@@ -1,34 +1,34 @@
-const { isMeatAvailable, getCookingTime } = require("./braaiMeat.js");
+const {isMeatAvailable, getCookingTime} = require("./braaiMeat.js");
 const {
     getCookingTimePreference,
     isCookingTimeMatch,
 } = require("./prepTime.js");
 
 function recommendBraaiMeat() {
-    const cookingTimePreference = getCookingTimePreference();
-
+    preferredMeat = "steak"
     if (
         isMeatAvailable(preferredMeat) &&
-        isCookingTimeMatch(getCookingTime(preferredMeat), cookingTimePreference)
+        isCookingTimeMatch(getCookingTime(preferredMeat), getCookingTimePreference())
     ) {
         console.log(
             `Fire up the braai! Your perfect choice is ${preferredMeat}.`
         );
     } else if (!isMeatAvailable(preferredMeat)) {
-        // Find an alternative based on availability (implementation omitted for brevity)
         const availableMeat = getAvailableMeat();
         console.log(
             `Sorry, we're out of ${preferredMeat} today. How about some delicious ${availableMeat} instead?`
         );
     } else {
         console.log(
-            `${preferredMeat} might take a bit longer than your preference. Consider a quicker option like steak.`
+            `${preferredMeat} might take a bit longer than your preference. Consider a quicker option like ${getAvailableMeat()}.`
         );
     }
 }
 
 function getAvailableMeat() {
-    // Find available meat from simulated inventory (implementation omitted for brevity)
+    const boereworsAvailable = true;
+    const steakAvailable = false;
+
     if (boereworsAvailable) {
         return "boerewors";
     } else if (steakAvailable) {
